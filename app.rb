@@ -12,8 +12,21 @@ get '/about' do
 	erb :about
 end
 
+
 get '/visit' do
 	erb :visit
+end
+
+post '/visit' do
+
+	@username = params[:username]
+	@phone = params[:phone]
+	@datetime = params[:datetime]
+
+
+	f.File.open '/public/users.txt', 'a'
+	f.write "User: #{@username}. Phone: #{@phone}. Date and time: #{@datetime}"
+	f.close
 end
 
 get '/contacts' do
