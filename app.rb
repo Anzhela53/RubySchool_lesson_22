@@ -17,6 +17,12 @@ get '/visit' do
 	erb :visit
 end
 
+
+
+post '/' do
+	erb :visit
+end
+
 post '/visit' do
 
 	@username = params[:username]
@@ -24,11 +30,10 @@ post '/visit' do
 	@datetime = params[:datetime]
 
 
+	@title = 'Thank you!'
+	@good = "Dear #{@username}, we'll be waiting for you at #{@datetime}"
 	f.File.open '/public/users.txt', 'a'
 	f.write "User: #{@username}. Phone: #{@phone}. Date and time: #{@datetime}"
 	f.close
-end
 
-get '/contacts' do
-	erb :contacts
 end
