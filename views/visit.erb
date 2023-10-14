@@ -1,25 +1,31 @@
 <h1>Sign up for Barber Shop</h1>
 <p>On this page you can make an appointment with us</p>
 
-<form action ="/visit" method ="POST" >
+<form action ="/visit" method ="POST" role="form">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input name="username" type="email" class="form-control" placeholder="You`re Email">
   </div>
 
   <div class="form-group">
-  <label for="exampleInputEmail1">Phone</label>
-  <input name="phone" type="phone" class="form-control" placeholder="You`re phone">
-</div>
+    <label for="exampleInputEmail1">Phone</label>
+    <input name="phone" type="phone" class="form-control" placeholder="You`re phone">
+  </div>
 
-<div class="form-group">
-<label for="exampleInputEmail1">When will you arrive?</label>
-<input name="datetime" type="text" class="form-control" placeholder="Date and time">
-</div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Your hairdresser</label>
+    <select class="form-control">
+      <option>Jesse</option>
+      <option>Gas</option>
+      <option>lesse</option>
+      <option>Mikolay</option>
+    </select>
+  </div>
 
 
-<div>
-<button type="submit" class="btn btn-default">Submit</button>
-</div>
+
+
+   <button type="submit" class="btn btn-default">Submit</button>
+
 
 </form>
