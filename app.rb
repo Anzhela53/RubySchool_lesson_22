@@ -18,22 +18,12 @@ get '/visit' do
 end
 
 
-
-post '/' do
-	erb :visit
-end
-
 post '/visit' do
-
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
+	@barber = params[:barber]
 
-
-	@title = 'Thank you!'
-	@good = "Dear #{@username}, we'll be waiting for you at #{@datetime}"
-	f.File.open '/public/users.txt', 'a'
-	f.write "User: #{@username}. Phone: #{@phone}. Date and time: #{@datetime}"
-	f.close
-
+	
+	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}"
 end
