@@ -4,22 +4,22 @@
 <form action ="/visit" method ="POST" role="form">
   <div class="form-group">
     <label for="exampleInputEmail1">Your name</label>
-    <input name="username" type="text" class="form-control" placeholder="You`re name">
+    <input id ="bbb" name="username" type="text" class="form-control" placeholder="You`re name">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Phone</label>
-    <input name="phone" type="text" class="form-control" placeholder="You`re phone">
+    <input name="phone" type="text" class="form-control ccc" placeholder="You`re phone">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1"> When will you arrive?</label>
-    <input name="datetime" type="text" class="form-control" placeholder="Date and time">
+    <input id="aaa"name="datetime" type="text" class="form-control" placeholder="Date and time">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Your hairdresser</label>
-    <select name ="barber" class="form-control">
+    <select name ="barber" class="form-control ccc">
       <option>Jesse</option>
       <option>Gas</option>
       <option>lesse</option>
@@ -27,10 +27,15 @@
     </select>
   </div>
 
-
-
-
-   <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default">Submit</button>
 
 
 </form>
+
+<script type="text/javascript">
+$('#aaa').css('background-color', 'grey');
+$('#bbb').css('background-color', 'red');
+$('.ccc').css('background-color', 'blue');
+
+
+</script>
