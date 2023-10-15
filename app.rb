@@ -27,7 +27,18 @@ post '/visit' do
 	@color = params[:color]
 
 	if @username ==''
-		@error = 'Fill in the fields'
+		@error = 'Fill in the name field'
+	end
+
+	if @phone ==''
+		@error = 'Fill in the phone field'
+	end
+
+	if @datetime ==''
+		@error = 'Fill in the date and timef ield'
+	end
+
+	if @error =! ''
 		return erb :visit
 	end
 
