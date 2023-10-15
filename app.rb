@@ -27,20 +27,13 @@ post '/visit' do
 	@color = params[:color]
 
 	hh = {:username => 'Fill in the name field',
-		  :phone => 'Fill in the phone field',
-		  :datetime => 'Fill in the date and time field' }
+		:phone => 'Fill in the phone field',
+		:datetime => 'Fill in the date and time field' }
 
-	#для каждой пары ключ-значение
-	hh.each do |key, value|
-		if params[key] == ''
-			#переменной error присвоить value из хуша hh
-			#(а value из хеша hh это сообщение об ошибке)
-			#т.е. переменной error присвоить сообщение об ошибке
-			@error = hh[key]
+	@error = hh.select {|key,_| params[key] == ""}.values.join(",")
 
-			#вернуть представление visit
-			return erb:visit
-		end
+	if @error != ''
+		return erb :visit
 	end
 	
 	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}, Color: #{@color}"
