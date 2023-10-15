@@ -26,22 +26,22 @@ post '/visit' do
 	@barber = params[:barber]
 	@color = params[:color]
 
-	if @username ==''
-		@error = 'Fill in the name field'
-	end
+	hh = {:username => 'Fill in the name field',
+		  :phone => 'Fill in the phone field',
+		  :datetime => 'Fill in the date and time field' }
 
-	if @phone ==''
-		@error = 'Fill in the phone field'
-	end
+	#для каждой пары ключ-значение
+	hh.each do |key, value|
+		if params[key] == ''
+			#переменной error присвоить value из хуша hh
+			#(а value из хеша hh это сообщение об ошибке)
+			#т.е. переменной error присвоить сообщение об ошибке
+			@error = hh[key]
 
-	if @datetime ==''
-		@error = 'Fill in the date and timef ield'
+			#вернуть представление visit
+			return erb:visit
+		end
 	end
-
-	if @error =! ''
-		return erb :visit
-	end
-
 	
 	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}, Color: #{@color}"
 end
