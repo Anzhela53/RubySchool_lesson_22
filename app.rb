@@ -9,6 +9,7 @@ end
 
 
 get '/about' do
+	@error = 'Something wrong!!!'
 	erb :about
 end
 
@@ -24,6 +25,11 @@ post '/visit' do
 	@datetime = params[:datetime]
 	@barber = params[:barber]
 	@color = params[:color]
+
+	if @username ==''
+		@error = 'Fill in the fields'
+		return erb :visit
+	end
 
 	
 	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}, Color: #{@color}"
