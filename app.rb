@@ -2,6 +2,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'pony'
+
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
@@ -38,3 +40,25 @@ post '/visit' do
 	
 	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}, Color: #{@color}"
 end
+
+post '/contacts' do 
+	Pony.mail(
+		@name => params[:name],
+	  @mail => params[:mail],
+	  @body => params[:body],
+	  @to => 'a.y.golikova@gmail.com',
+	  @subject => params[:name] + " has contacted you",
+	  @body => params[:message],
+	  @port => '587',
+	  @via => :smtp,
+	  @via_options => { 
+		@address              => 'smtp.gmail.com', 
+		@port                 => '587', 
+		@enable_starttls_auto => true, 
+		@user_name            => 'anzhela', 
+		@password             => 'password, 
+		@authentication       => :plain, 
+		@domain               => 'localhost.localdomain'
+	  })
+	retutn '/success' 
+	end
