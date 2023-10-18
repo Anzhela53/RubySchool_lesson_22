@@ -56,9 +56,12 @@ post '/contacts' do
 		@port                 => '587', 
 		@enable_starttls_auto => true, 
 		@user_name            => 'anzhela', 
-		@password             => 'password, 
+		@password             => 'password-, 
 		@authentication       => :plain, 
 		@domain               => 'localhost.localdomain'
 	  })
 	retutn '/success' 
 	end
+
+
+	db = SQLite3::Database.new 'BarberShop'
