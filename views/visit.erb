@@ -14,13 +14,13 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1"> When will you arrive?</label>
-    <input name="datetime" type="text" class="form-control" placeholder="Date and time" value="<%=@datetime%>">
+    <input id ="datetimepicker" name="datetime" type="text" class="form-control" placeholder="Date and time" value="<%=@datetime%>">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Your hairdresser</label>
     <select name ="barber" class="form-control ">
-      <option <%= @barber == 'Jesse' ? 'selected': '' %>Jesse</option>
+      <option <%= @barber == 'Jesse' ? 'selected': '' %>>Jesse</option>
       <option <%= @barber == 'Gas' ? 'selected': '' %>>Gas</option>
       <option <%= @barber == 'Lesse' ? 'selected': '' %>>Lesse</option>
       <option <%= @barber == 'Mikolay' ? 'selected': '' %>>Mikolay</option>
@@ -53,6 +53,8 @@
 <script type="text/javascript">
     $(function () {
       $('#color').simplecolorpicker();
+      $('#datetimepicker').datetimepicker();
+
   });
 
 </script>
