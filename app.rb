@@ -77,7 +77,6 @@ end
 
 
 get '/showusers' do
-	@error = 'Something wrong!!!'
-	erb :about
+	erb :showusers
 end
 
