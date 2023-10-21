@@ -6,6 +6,20 @@ require 'pony'
 require 'sqlite3'
 
 
+def is_barber_exists? db, name
+	db.execute('select * from Barbers where name=?', [name]).length > 0
+end	
+
+def seed_db db, barbers
+	barbers.each do |barber|
+		if !is_barber_exists? db, barber
+			db.execute 'INSERT INTO Barbers (name) VALUES(?)', [barber]
+		end
+	end
+end
+
+
+
 def get_db
 	return SQLite3::Database.new 'BarberShop.db'
 	db.results_as_hash = true
@@ -17,14 +31,23 @@ configure do
 	db.execute 'CREATE TABLE IF NOT EXISTS
 		"Users"
 		(
-			"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
-			"Username" TEXT,
-			"Phone" TEXT,
-			"Datestamp" TEXT,
-			"Barber" TEXT,
-			"COlor" TEXT
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"username" TEXT,
+			"phone" TEXT,
+			"datestamp" TEXT,
+			"barber" TEXT,
+			"color" TEXT
 		)'
-	
+
+	db.execute 'CREATE TABLE IF NOT EXISTS
+		"Barbers"
+		(
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"name" TEXT
+		)'
+
+	seed_db db, ['Jesse', 'Gas', 'Lesse', 'Mikolay']
+	db.close
 end
 
 get '/' do
@@ -64,11 +87,11 @@ post '/visit' do
 	db.execute 'INSERT INTO
 		Users
 		(
-			Username,
-			Phone,
-			Datestamp,
-			Barber,
-			COlor
+			username,
+			phone,
+			datestamp,
+			barber,
+			color
 		)
 		VALUES (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barber, @color]
 	
@@ -80,7 +103,8 @@ get '/showusers' do
 	db = get_db
 
 	@results=db.execute 'select * from Users order by id desc'
+	db.close
 
-	 erb :showusers
+	erb :showusers
 end
 
