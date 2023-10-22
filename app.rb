@@ -100,7 +100,9 @@ post '/visit' do
 		)
 		VALUES (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barber, @color]
 	
-	erb "OK, username is #{@username}. Phone: #{@phone}, Date and time: #{@datetime},Barber: #{@barber}, Color: #{@color}"
+	erb "<h2>Thank you, #{@username}.
+			<h3>We're waiting for you: #{@datetime}.</h3> 
+				<p>Your barber: #{@barber}.</p>"
 end
 
 
